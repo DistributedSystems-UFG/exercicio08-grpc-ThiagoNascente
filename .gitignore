@@ -1,0 +1,5 @@
+/venv
+/python/EmployeeService_pb2_grpc.py
+/python/EmployeeService_pb2.py
+/python/__pycache__
+/.vscode

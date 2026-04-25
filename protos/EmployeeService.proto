@@ -18,13 +18,26 @@ service EmployeeService {
   rpc DeleteEmployee (EmployeeID) returns (StatusReply) {}
   // List all employees
   rpc ListAllEmployees (EmptyMessage) returns (EmployeeDataList) {}
-  
+
+  //Novas funcoes criadas
+  // pega o salario do funcionario de id EmployeeTitleUpdate
+  rpc GetSalaryByID (EmployeeID) returns (EmployeeSalary) {}
+  // pega os funcionarios de um determinado cargo na empresa
+  rpc ListEmployeesByTitle (TitleRequest) returns (EmployeeDataList) {}
+  // promover funcionario
+  rpc PromoteEmployee (PromoteRequest) returns (StatusReply) {}
+
 }
 
 message EmployeeData {
   uint32 id = 1;
   string name = 2;
   string title = 3;
+  float salary = 4;
+}
+
+message EmployeeSalary{
+  float salary = 1;
 }
 
 message StatusReply {
@@ -44,4 +57,13 @@ message EmptyMessage{}
 
 message EmployeeDataList{
   repeated EmployeeData employee_data = 1;
+}
+
+message TitleRequest{
+  string title = 1;
+}
+
+message PromoteRequest{
+  uint32 id = 1;
+  float increase = 2;
 }
