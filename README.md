@@ -1,43 +1,70 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/s_Vw1dfl)
 # gRPC-WS-Example
-This is the gRPC equivalent of the RESTful WS example, meant to illustrate the difference between generic interfaces (i.e., RESTful) and application-specific interfaces.
 
-See here for instructions on how to install gRPC and compile the interface specification (.proto): https://grpc.io/docs/languages/python/quickstart/
+## Actions
+> sucessão de passos
 
-Step-by-step (steps 1-4 on both machines, client and server):
+```bash
+sudo apt install python3-pip
+```
 
-## 1) Install PIP
+```bash
+cd /mnt/efs/fs1
+```
 
-$:> sudo apt install python3-pip
+```bash
+sudo git clone https://github.com/DistributedSystems-UFG/exercicio08-grpc-ThiagoNascente.git
+```
 
-## 2) Upgrade PIP
+```bash
+cd
+```
 
-$:> python3 -m pip install --upgrade pip
+```bash
+sudo chown -R ubuntu:ubuntu /mnt/efs/fs1/exercicio08-grpc-ThiagoNascente
+```
 
-## 3) Install gRPC runtime
+```bash
+cd exercicio08-grpc-ThiagoNascente/
+```
 
-$:> python3 -m pip install grpcio
+```bash
+cd /mnt/efs/fs1/exercicio08-grpc-ThiagoNascente/
+```
 
-## 4) Install gRPC tools
+```bash
+python3 -m venv venv
+```
 
-$:> python3 -m pip install grpcio-tools
+```bash
+source venv/bin/activate
+```
 
-## 5) Clone this repo
+```bash
+python3 -m pip install --upgrade pip
+```
 
-## 6) Compile interface specification (Protocol Buffers .proto file)
+```bash
+python3 -m pip install grpcio
+```
 
-$:> cd python
+```bash
+python3 -m pip install grpcio-tools
+```
 
-$:> python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ../protos/EmployeeService.proto
+## da maquina servidor
+> estando na venv, e no diretorio python/
+```bash
+python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ../protos/EmployeeService.proto
+```
 
-## 7) Run the example (using two differente machines)
-
-### On the first machine:
-
-$:> python3 EmployeeService.py
-
-### On the second machine:
-
-$:> python3 EmployeeClient.py
+```bash
+python3 EmployeeService.py
+```
+## de alguma maquina cliente
+> estando na venv, e no diretorio python/
+```bash
+python3 EmployeeClient.py
+```
 
 ### Note: open port 50051 on the firewall at EC2 (security group)
